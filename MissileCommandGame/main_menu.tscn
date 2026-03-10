@@ -1,0 +1,219 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1jsoo4v55cji"]
+
+[ext_resource type="Script" uid="uid://b785p52rr0nsn" path="res://main_menu.gd" id="1_fu7sn"]
+[ext_resource type="FontFile" uid="uid://ctfv8fvkojyhm" path="res://terminator real nfi.ttf" id="2_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://d10gyr3qymtcr" path="res://Assets/backgrounds/level1.png" id="2_jix8l"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jix8l"]
+texture = ExtResource("2_jix8l")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
+bg_color = Color(0.36659476, 0.36659455, 0.36659458, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+bg_color = Color(0.5529558, 0.5529555, 0.55295545, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jix8l"]
+bg_color = Color(0.06666667, 0.09019608, 0.34117648, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fu7sn")
+metadata/_edit_group_ = true
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jix8l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.19733334
+anchor_top = 0.4283352
+anchor_right = 0.7453333
+anchor_bottom = 0.6907387
+offset_left = 20.0
+offset_right = -184.97668
+offset_bottom = -64.13977
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.9949197, 1.3689159)
+theme_override_constants/separation = 8
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fu7sn")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+text = "Start game"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fu7sn")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+text = "Credits"
+
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_fu7sn")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+text = "Exit"
+
+[node name="TituloJogo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -370.0
+offset_top = -173.5
+offset_right = 369.0
+offset_bottom = -62.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("2_fu7sn")
+theme_override_font_sizes/font_size = 40
+text = "Missile Command"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelCredits" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = -224.5
+offset_right = 292.0
+offset_bottom = 250.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jix8l")
+
+[node name="Label" type="Label" parent="PanelCredits"]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 9.0
+offset_right = 603.0
+offset_bottom = 468.0
+theme_override_font_sizes/font_size = 21
+text = "MISSILE COMMAND REMAKE Projeto Acadêmico - ENDI
+
+EQUIPE DE DESENVOLVIMENTO:
+- João Victor da Silva
+- Murilo do Amaral Dall Ovo
+- Miguel Mascaro dos Santos
+- Lucas Liberatoscioli De Bona
+- Thiago Molgora Ferreira
+
+ASSETS OBTIDOS EM:
+pixabay.com/sound-effects/
+www.youtube.com/@DOVASYNDROMEYouTubeOfficial
+Desenvolvido na Godot Engine 
+Obrigado por jogar!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="PanelCredits"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 493.0
+offset_right = 257.9248
+offset_bottom = 525.0
+scale = Vector2(2.4869998, 1.9415871)
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+text = "Close"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="PanelCredits/CloseButton" to="." method="_on_close_button_pressed"]

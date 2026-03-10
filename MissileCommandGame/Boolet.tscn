@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dig0vjiylgyar"]
+
+[ext_resource type="Script" uid="uid://dc5mr2gra4ei0" path="res://Bulletlook.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b558x5g2qmjgg" path="res://Assets/Sprites/Player/boolet/stage1.png" id="2"]
+[ext_resource type="Script" uid="uid://dfcyt68h5eqqa" path="res://Missile.gd" id="3"]
+
+[node name="raiz" type="Area2D"]
+position = Vector2(-100, 480)
+collision_mask = 2
+script = ExtResource("3")
+
+[node name="Boolet" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2")
+script = ExtResource("1")

@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=3 uid="uid://88q3pdc0x7fr"]
+
+[ext_resource type="Texture2D" uid="uid://d3kkh4jj6l215" path="res://Assets/Sprites/Enemy/Boolets/Bomb.png" id="1_j777p"]
+[ext_resource type="Texture2D" uid="uid://bdc4eap1w057t" path="res://Assets/Sprites/Enemy/Boolets/Bombhurt.png" id="2_66uwv"]
+[ext_resource type="Texture2D" uid="uid://mmv0be6nncm1" path="res://Assets/Sprites/Enemy/Boolets/Tiny.png" id="2_hli6a"]
+
+[sub_resource type="GDScript" id="GDScript_yuoxb"]
+script/source = "extends Area2D
+@onready var megumin = preload(\"res://ExplosionEvil.tscn\")
+@export var speed: float = 200
+var target: Vector2
+var protection = 3
+var HP = 0
+var cooldown = 0
+var typeOfEnemy
+var currentPos: Vector2
+func _ready() -> void:
+	Globallevelup.connect(\"level_up\", Callable(self, \"_on_level_up\"))
+func _on_level_up():
+	queue_free()
+func shootSub():
+	protection = 100
+	$hitbox.shape = $hitbox.shape.duplicate()
+	match typeOfEnemy:
+		1:
+			HP = 1
+		2:
+			HP = 2
+	$Visual._setLook(typeOfEnemy)
+	connect(\"area_entered\", Callable(self, \"_on_area_entered\"))
+func _on_area_entered(area):
+	if area.is_in_group(\"Explosion\") or area.is_in_group(\"ExplosionEnemy\") and protection == 0:
+		$Visual.hurt(typeOfEnemy)
+		HP = HP - 1
+func resize_hitbox(missile_type: int) -> void:
+	var shape = $hitbox.shape
+	currentPos.x = global_position.x
+	currentPos.y = global_position.y
+	$Visual._lookattargetbullet(target)
+	$hitbox._lookattargethitbox(target)
+	match missile_type:
+		1:
+			shape.radius = 7
+			shape.height = 15
+		2:
+			shape.radius = 7
+			shape.height = 30
+func _process(_delta):
+	protection = protection - 1
+	cooldown = cooldown + 1
+	match typeOfEnemy:
+		1:
+			speed = 100
+		2:
+			speed = 15
+	resize_hitbox(typeOfEnemy)
+	var direction = (target - global_position).normalized()
+	global_position += direction * speed * _delta
+	if $Visual.isOver == true:
+		$Visual._lookattargetbullet(target, typeOfEnemy)
+	if global_position.distance_to(target) < 5 or HP <= 0:
+		if cooldown > 5:
+			var bomb = megumin.instantiate()
+			get_parent().add_child(bomb)
+			bomb.explosionlevel = 2
+			bomb.global_position = $\".\".global_position
+			queue_free()
+		else:
+			match typeOfEnemy:
+				1:
+					HP = 1
+				2:
+					HP = 2
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yuoxb"]
+radius = 15.0
+
+[sub_resource type="GDScript" id="GDScript_b5gx7"]
+script/source = "extends CollisionShape2D
+func _lookattargethitbox(_target : Vector2):
+	look_at(_target)
+	pass
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qd3kg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j777p")
+}],
+"loop": true,
+"name": &"Bomb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_66uwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_j777p")
+}],
+"loop": false,
+"name": &"Bombhurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hli6a")
+}],
+"loop": true,
+"name": &"Tiny",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_y0nky"]
+script/source = "extends AnimatedSprite2D
+@onready var _animated_sprite = $\".\"
+var isOver
+func _setLook(Visual):
+	if Visual == 2:
+		_animated_sprite.play(\"Bomb\")
+	if Visual == 1:
+		_animated_sprite.play(\"Tiny\")
+func _on_animation_finished():
+	isOver = true
+func hurt(type):
+	if type == 2:
+		_animated_sprite.play(\"Bombhurt\")
+func _lookattargetbullet(_target : Vector2):
+	look_at(_target)
+"
+
+[node name="enemyFire" type="Area2D"]
+z_index = -1
+collision_layer = 2
+script = SubResource("GDScript_yuoxb")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 1)
+shape = SubResource("CapsuleShape2D_yuoxb")
+script = SubResource("GDScript_b5gx7")
+
+[node name="Visual" type="AnimatedSprite2D" parent="."]
+visibility_layer = 4
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_qd3kg")
+animation = &"Bombhurt"
+script = SubResource("GDScript_y0nky")

@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=3 uid="uid://str1ktpuerow"]
+
+[ext_resource type="Script" uid="uid://c8xi5i6ppwodd" path="res://game_over_tela.gd" id="1_yxx3c"]
+[ext_resource type="FontFile" uid="uid://ctfv8fvkojyhm" path="res://terminator real nfi.ttf" id="2_ccer4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xapjj"]
+bg_color = Color(0.033853274, 0.03385329, 0.033853233, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y26ei"]
+bg_color = Color(0.45358002, 0, 0.050215878, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8u835"]
+bg_color = Color(0.22121587, 9.1298017e-07, 0.011941071, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftari"]
+bg_color = Color(0.28687185, 1.0739174e-06, 0.019921089, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28vn7"]
+bg_color = Color(0.45358002, 0, 0.050215878, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverTela" type="Panel" parent="CanvasLayer"]
+offset_right = 753.0
+offset_bottom = 899.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xapjj")
+script = ExtResource("1_yxx3c")
+
+[node name="GameOverTexto" type="Label" parent="CanvasLayer/GameOverTela"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -271.875
+offset_top = -110.0
+offset_right = 255.875
+offset_bottom = -50.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ccer4")
+theme_override_font_sizes/font_size = 55
+text = "Game Over"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverTela"]
+layout_mode = 0
+offset_left = 386.0
+offset_top = 479.0
+offset_right = 587.6172
+offset_bottom = 524.0
+scale = Vector2(1.3193322, 1.5157374)
+theme_override_fonts/font = ExtResource("2_ccer4")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_y26ei")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8u835")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ftari")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_28vn7")
+text = "Restart"
+
+[node name="MenuButton" type="Button" parent="CanvasLayer/GameOverTela"]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 478.0
+offset_right = 282.0
+offset_bottom = 526.5791
+scale = Vector2(1.2384415, 1.3970188)
+theme_override_fonts/font = ExtResource("2_ccer4")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_28vn7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8u835")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ftari")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_28vn7")
+text = "Menu"
+
+[connection signal="pressed" from="CanvasLayer/GameOverTela/RestartButton" to="CanvasLayer/GameOverTela" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverTela/MenuButton" to="CanvasLayer/GameOverTela" method="_on_menu_button_pressed"]
